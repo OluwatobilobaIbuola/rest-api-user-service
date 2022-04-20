@@ -1,46 +1,50 @@
-let servicesRender = [];
 
+let servicesRender = [] 
+let washService = {
+        task : "Wash Car",
+        amount: 10
+}
+let mowService = {
+        task : "Mow Lawn",
+        amount: 20
+}
+let pullService = {
+        task : "Pull Weeds",
+        amount: 30
+}
+
+let total = 0;
 const buttons = document.querySelectorAll(".btn")
 const optionEl = document.querySelector(".option")
 const optionAmountEl = document.querySelector(".option-amount")
-const calArr = []
-const amountsEl = document.querySelector(".amounts")
+const totalEl = document.querySelector(".total-figure")
+
 
 
 
 buttons.forEach(btn => {
     btn.addEventListener("click" ,function(e){
         if (e.target.classList.contains("a")){
-            washServices (e)
+            servicesRender.push(washService)
+            optionEl.innerHTML += `<div>${washService.task}</div>`
+            optionAmountEl.innerHTML += `<div><span class="amount-sign">$</span>${washService.amount}</div>`
         } else if (e.target.classList.contains("b")){
-            mowServices(e)
+            servicesRender.push(mowService)
+            optionEl.innerHTML += `<div>${mowService.task}</div>`
+            optionAmountEl.innerHTML +=`<div><span class="amount-sign">$</span>${mowService.amount}</div>`
         } else if (e.target.classList.contains("c")){
-            pullServices (e)
+            servicesRender.push(pullService)
+            optionEl.innerHTML += `<div>${pullService.task}</div>`
+            optionAmountEl.innerHTML += `<div><span class="amount-sign">$</span>${pullService.amount}</div>`
         }
-        const amountEl = document.querySelectorAll(".amount")
-        amountEl.forEach(amount => {
-            cal (amount.innerHTML)
-        })
-       
-    })
+        console.log("a", servicesRender.length)
+        cal(servicesRender, total)
+        })  
 })
 
-function washServices (){
-    optionEl.innerHTML += `<div>Wash Car</div>`
-    optionAmountEl.innerHTML += `<div class="amount">$10</div>`
-}
-function mowServices (){
-    optionEl.innerHTML += `<div>Mow Lane</div>`
-    optionAmountEl.innerHTML += `<div class="amount">$20</div>`
-}
-
-function pullServices (){
-    optionEl.innerHTML += `<div>Pull Weeds</div>`
-    optionAmountEl.innerHTML += `<div class="amount">$30</div>`
-}
-function cal (x){
-    let number = parseInt(x)
-    console.log(number)
-    // x += x
-    // amountsEl.innerHTML = x
+function cal (arr, total){
+    for (i = 0; i < arr.length; i++){
+            total += arr[i].amount;
+            totalEl.innerHTML = `<span class="amount-sign">$</span>${total}`
+    }
 }

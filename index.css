@@ -76,6 +76,9 @@ margin-bottom: 0.8rem;
 .option-amount div{
     font-size: 1.25rem;
 }
+.amount-sign{
+    color:#4A4E74;
+}
 
 .split-item p{
     margin:1rem 0;
